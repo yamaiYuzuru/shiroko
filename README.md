@@ -8,4 +8,4 @@
 
 If you find bugs or errors open an issues
 
-For new features fork this repo and open an pull request descrip your features.
+For new features fork this repo and open an pull request describe your features.
