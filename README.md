@@ -1,5 +1,4 @@
 # Shiroko
----
 -------------------
 | Support Server | Version | Invite |
 | :---: | :---: | :---: |
