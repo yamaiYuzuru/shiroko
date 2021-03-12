@@ -10,16 +10,8 @@ const fs = require('fs');
 const db = JSON.parse(fs.readFileSync('./db/shiroko.json', "utf8"));
 module.exports = async (client, msg) => {
     const prefix = "sb$";
-
+    
     if (!msg.guild) return msg.channel.send('Sorry but you can\'t use commands only in guilds.');
-
-    if (db[msg.guild.id]) db[msg.guild.id] = {
-        temp: [{
-            enabled: false,
-            joinChannelID: "",
-            channelName: "%username%'s voice channel"
-        }]
-    };
 
     if (!msg.content.startsWith(prefix)) return true;
 
@@ -35,6 +27,9 @@ module.exports = async (client, msg) => {
 
     if (cmd.kategorie === "nsfw" && !msg.channel.nsfw) {
         return msg.channel.send(new MessageEmbed().setDescription("Nsfw commands works only in NSFW marked channels!"));
+    }
+    if (cmd.kategorie === "admin" && !["428835662310146049", ""].includes(msg.author.id)) {
+        return true;
     }
 
      await cmd.run(client, msg, args);

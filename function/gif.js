@@ -7,7 +7,7 @@
  */
 module.exports = class gif {
     constructor() {
-        this.baseURL = "https://shiroko.ml/cdn/";
+        this.baseURL = "https://cdn.shiroko.ml/";
     }
 
     get getHappy() {

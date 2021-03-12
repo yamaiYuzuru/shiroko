@@ -23,8 +23,7 @@ module.exports = {
                     .setImage(images[pg].url)
                     .setURL(images[pg].url)
                     .setFooter("Tags: " + doujin.tags.map(t => t.name).join(', '));
-
-                msg.channel.send(embed).then(mssg => {
+                    msg.channel.send(embed).then(mssg => {
                     mssg.react("⬅️");
                     mssg.react("➡️");
 
@@ -42,6 +41,7 @@ module.exports = {
 
 
                                 if (!images[pg + 1]) {
+                                    // eslint-disable-next-line no-self-assign
                                     pg = pg
                                 } else {
                                     pg = pg + 1
@@ -63,6 +63,7 @@ module.exports = {
 
                                 if (!images[pg - 1]) {
 
+                                    // eslint-disable-next-line no-self-assign
                                     pg = pg
                                 } else {
                                     pg = pg - 1
@@ -84,7 +85,7 @@ module.exports = {
 
                     });
 
-                    collector.on('end', collected => {
+                    collector.on('end', () => {
                         if (mssg) {
                             mssg.reactions.removeAll()
                         }
@@ -121,6 +122,7 @@ module.exports = {
 
 
                                 if (!images[pg + 1]) {
+                                    // eslint-disable-next-line no-self-assign
                                     pg = pg
                                 } else {
                                     pg = pg + 1
@@ -141,7 +143,7 @@ module.exports = {
 
 
                                 if (!images[pg - 1]) {
-
+                                    // eslint-disable-next-line no-self-assign
                                     pg = pg
                                 } else {
                                     pg = pg - 1
@@ -162,7 +164,7 @@ module.exports = {
 
                     });
 
-                    collector.on('end', collected => {
+                    collector.on('end', () => {
                         if (mssg) {
                             mssg.reactions.removeAll()
                         }

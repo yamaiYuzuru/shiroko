@@ -6,15 +6,15 @@
  * @github https://github.com/yamaiYuzuru
  * @copyright ©yuzuru, 2021
  */
-const {Client, Collection} = require('discord.js');
+const {Client, Collection, MessageEmbed} = require('discord.js');
 const fs = require('fs');
-const sqlite = require('sqlite');
+// const sqlite = require('sqlite');
 const Console = require('./function/ShirokoConsole');
 
 /**
  * @param client {Client}
  */
-const client = new Client({shards: "auto", shardCount: 1, disableMentions: "everyone", fetchAllMembers: true});
+const client = new Client({disableMentions: "everyone", fetchAllMembers: true});
 /**
  * @param cmds {Collection}
  * @param aliases {Collection}
@@ -58,11 +58,11 @@ fs.readdir("./command", (err, cat) => {
         });
     });
 });
-
+/*
 sqlite.open("./db/shiroko.sqlite").then((r) => {
     console.info('Database Shiroko was loaded.');
     client.sql = r;
-}).catch(e => console.error(e));
+}).catch(e => console.error(e));*/
 
 client.login('T8h5I7s5d4d846_8I2s7N0o7td894.A1n_6B03o62t5.T5o4k8e21nds8_.5a984dd87s4518af').then(() => {
     c.info('Logged in as ' +  client.user.tag);
@@ -73,7 +73,7 @@ client.on('ready', async () => {
     setInterval(() => {
         setPresence(client);
     }, 10e3);
-    client.channels.cache.get('811238806153986100').setName(`Shiroko-Guild Count: ${client.guilds.cache.size}`)
+    // client.channels.cache.get('811238806153986100').setName(`Shiroko-Guild Count: ${client.guilds.cache.size}`)
 });
 
 /**
@@ -99,6 +99,13 @@ async function setPresence(client) {
     })
 }
 
+// Constructor or others
 module.exports.getBot = () => {
     return client;
+};
+
+client.getErrorEmbed = (title, description) => {
+    if (title !== 'string') return console.log('the title in error embed is not an string');
+    if (description !== 'string') return console.log('The description in error embed is not an string');
+    return new MessageEmbed().setTitle(title).setDescription(description).setColor('RED').setTimestamp(Date.now());
 };

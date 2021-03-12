@@ -10,20 +10,20 @@ const cheerio = require('cheerio');
 const fetch = require('node-fetch');
 
 module.exports = {
-    run: async (client, msg, args) => {
+    run: async (client, msg) => {
         let random = Math.floor(Math.random() * 111);
         let text = await fetch(`https://hdqwalls.com/category/anime-wallpapers/page/${random}`, { method: "GET" });
         text = await text.text();
         let $ = cheerio.load(text);
         let images = [];
-
+        // eslint-disable-next-line no-self-assign,no-unused-vars
         $('img[class="thumbnail img-responsive custom_width"]').each(function(i, elem) {
             images.push($(this).attr('src'));
         });
 
 
 
-        let limit = images.length;
+        // let limit = images.length;
         let pg = 0;
         let embed = new MessageEmbed()
             .setTitle('Here some wallpapers')
@@ -52,6 +52,7 @@ module.exports = {
 
 
                     if (!images[pg + 1]) {
+                        // eslint-disable-next-line no-self-assign
                         pg = pg
                     } else {
                         pg = pg + 1
@@ -70,7 +71,7 @@ module.exports = {
 
 
                     if (!images[pg - 1]) {
-
+// eslint-disable-next-line no-self-assign
                         pg = pg
                     } else {
                         pg = pg - 1
@@ -90,7 +91,7 @@ module.exports = {
 
         });
 
-        collector.on('end', collected => {
+        collector.on('end', () => {
             if (mssg) {
                 mssg.reactions.removeAll()
             }
