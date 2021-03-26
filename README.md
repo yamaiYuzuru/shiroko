@@ -8,3 +8,6 @@
 If you find bugs or errors open an issues
 
 For new features fork this repo and open an pull request describe your features.
+
+# Top.gg
+[![Discord Bots](https://top.gg/api/widget/803387328294027264.svg)](https://top.gg/bot/803387328294027264)
