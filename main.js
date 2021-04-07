@@ -84,7 +84,7 @@ sqlite.open("./db/shiroko.sqlite").then((r) => {
     client.sql = r;
 }).catch(e => console.error(e));*/
 
-client.login(`ODEyMzM2ODc1ODI5NzIzMjQ3.YC_Rqw._4lzem7k2ejAvvGYQlOiUW5IWJU`).then(() => {
+client.login(`YOUR_TOKEN`).then(() => {
     c.info('Logged in as ' +  client.user.tag);
 }).catch((e) => c.error(e));
 
@@ -93,8 +93,8 @@ client.on('ready', async () => {
     setInterval(() => {
         setPresence(client);
     }, 10e3);
-    //client.channels.cache.get('811238806153986100').setName(`Shiroko-Guild Count: ${client.guilds.cache.size}`);
-    // await poster(config.top_gg, client);
+    client.channels.cache.get('811238806153986100').setName(`Shiroko-Guild Count: ${client.guilds.cache.size}`);
+    await poster(config.top_gg, client);
 });
 
 /**
