@@ -1,8 +1,8 @@
 {
   "name": "shiroko",
-  "version": "1.0.0",
+  "version": "1.2.5",
   "description": "A little discord bot.",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "test": "eslint .",
     "start": "pm2 start main.js --name shiroko",
@@ -14,7 +14,7 @@
     "Bot",
     "Anime"
   ],
-  "author": "",
+  "author": "yuzuru",
   "license": "ISC",
   "dependencies": {
     "@zuzak/owo": "^1.14.0",
