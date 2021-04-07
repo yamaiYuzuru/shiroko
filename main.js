@@ -6,30 +6,49 @@
  * @github https://github.com/yamaiYuzuru
  * @copyright ©yuzuru, 2021
  */
-const {Client, Collection, MessageEmbed} = require('discord.js');
+// eslint-disable-next-line no-unused-vars
+const {Client, Collection, MessageEmbed, StringResolvable} = require('discord.js');
 const fs = require('fs');
 // const sqlite = require('sqlite');
 const Console = require('./function/ShirokoConsole');
+let Player = require('discord-player');
+let config = require('./config.json');
+let topgg = require('@top-gg/sdk');
+// eslint-disable-next-line no-unused-vars
+let topgg_api = new topgg.Api(config.top_gg);
+let poster = require('topgg-autoposter');
+let db = require('./function/db.js');
+let manager = require('./manager.js');
 
 /**
- * @param client {Client}
+ * @const client {Client}
  */
-const client = new Client({disableMentions: "everyone", fetchAllMembers: true});
+const client = new Client({disableMentions: "everyone"});
 /**
- * @param cmds {Collection}
- * @param aliases {Collection}
- * @param c {Console}
+ * @const cmds {Collection}
+ * @const aliases {Collection}
+ * @const c {Console}
  */
 const cmds = client.cmds = new Collection();
 const aliases = client.aliases = new Collection();
 const c = client.console = new Console(client);
+client.db = db;
+client.player = new Player.Player(client, {quality: "high", leaveOnEmpty: true});
 
 fs.readdir('./events', (err, files) => {
     files.forEach(file =>{
         if (!file.endsWith('.js')) return true;
         client.on(file.split('.')[0], require(`./events/${file}`).bind(null, client));
-        console.info(`[EventHandler] It was ${files.length} events loaded`)
     });
+    console.info(`[EventHandler] It was ${files.length} events loaded`)
+});
+
+fs.readdir('./player', (err, files) => {
+    files.forEach(file => {
+        if (!file.endsWith('.js')) return true;
+        client.player.on(file.split('.')[0], require(`./player/${file}`).bind(null, client));
+    });
+    console.log(`[PlayerEventsHandler] It was ${files.length} player-events loaded`)
 });
 
 fs.readdir("./command", (err, cat) => {
@@ -58,13 +77,14 @@ fs.readdir("./command", (err, cat) => {
         });
     });
 });
+
 /*
 sqlite.open("./db/shiroko.sqlite").then((r) => {
     console.info('Database Shiroko was loaded.');
     client.sql = r;
 }).catch(e => console.error(e));*/
 
-client.login('T8h5I7s5d4d846_8I2s7N0o7td894.A1n_6B03o62t5.T5o4k8e21nds8_.5a984dd87s4518af').then(() => {
+client.login(`ODEyMzM2ODc1ODI5NzIzMjQ3.YC_Rqw._4lzem7k2ejAvvGYQlOiUW5IWJU`).then(() => {
     c.info('Logged in as ' +  client.user.tag);
 }).catch((e) => c.error(e));
 
@@ -73,7 +93,8 @@ client.on('ready', async () => {
     setInterval(() => {
         setPresence(client);
     }, 10e3);
-    // client.channels.cache.get('811238806153986100').setName(`Shiroko-Guild Count: ${client.guilds.cache.size}`)
+    //client.channels.cache.get('811238806153986100').setName(`Shiroko-Guild Count: ${client.guilds.cache.size}`);
+    // await poster(config.top_gg, client);
 });
 
 /**
@@ -96,16 +117,41 @@ async function setPresence(client) {
             name: name + ' | s$help',
             type: type
         }, status: "idle"
-    })
+    });
+}
+//manager().then(() => {
+//     console.log('[Shards] Manager was loaded')
+//});
+// Constructor or others
+/*function getBot() {
+    return client;
 }
 
-// Constructor or others
-module.exports.getBot = () => {
-    return client;
-};
+module.exports = {
+    getBot
+};*/
 
+client.getSettings = () => {
+    return config;
+};
+/**
+ * @param title {StringResolvable | string}
+ * @param description {StringResolvable | string}
+**/
 client.getErrorEmbed = (title, description) => {
-    if (title !== 'string') return console.log('the title in error embed is not an string');
-    if (description !== 'string') return console.log('The description in error embed is not an string');
     return new MessageEmbed().setTitle(title).setDescription(description).setColor('RED').setTimestamp(Date.now());
+};
+/**
+ * @param title {StringResolvable | string}
+ * @param description {StringResolvable | string}
+**/
+client.getEmbed = (title, description) => {
+    return new MessageEmbed().setTitle(title).setDescription(description).setColor('GREEN').setTimestamp(Date.now());
+};
+/**
+ * @param title {StringResolvable | string}
+ * @param description {StringResolvable | string}
+**/
+client.getWarnEmbed = (title, description) => {
+    return new MessageEmbed().setTitle(title).setDescription(description).setColor('YELLOW').setTimestamp(Date.now());
 };
