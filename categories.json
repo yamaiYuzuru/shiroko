@@ -1,0 +1,34 @@
+[
+  {
+    "displayName": "⚪ Main",
+    "name": "main"
+  },
+  {
+    "displayName": "🛡 Moderation",
+    "name": "moderation"
+  },
+  {
+    "displayName": "😂 Fun",
+    "name": "fun"
+  },
+  {
+    "displayName": "🌸 Profile",
+    "name": "profile"
+  },
+  {
+    "displayName": "⚙ Utility",
+    "name": "utility"
+  },
+  {
+    "displayName": "🛠 Settings",
+    "name": "settings"
+  },
+  {
+    "displayName": "💴 Economy",
+    "name": "economy"
+  },
+  {
+    "displayName": "🔞 NSFW",
+    "name": "nsfw"
+  }
+]
