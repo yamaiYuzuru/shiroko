@@ -9,6 +9,8 @@ exports.run = async (client, msg, args) => {
     let member = msg.mentions.members.first() || msg.guild.members.cache.get(args[0]);
 
     if (!member) return msg.reply('I can\'t find this member');
+    if (!msg.member.permissions.has('KICK_MEMBERS')) return msg.reply('You don\'t have enough permissions to use this command');
+    if (!member.kickable) return msg.reply('I can\'t kick this member');
 
     let kickButton = new MessageButton().setStyle('SUCCESS').setLabel('Kick').setCustomId('cmd_kick_kick');
     let stopButton = new MessageButton().setStyle('SECONDARY').setLabel('Exit').setCustomId('cmd_kick_exit');
