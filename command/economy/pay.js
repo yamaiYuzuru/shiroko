@@ -24,7 +24,7 @@ exports.run = async (client, msg, args) => {
 
     let embed = new MessageEmbed();
     embed.setTitle('Pay');
-    embed.setDescription(`You had successful ${Math.floor(args[1]-0)} creditpoints to ${member.user.tag}`);
+    embed.setDescription(`You had successful ${Math.round(args[1]-0)} creditpoints to ${member.user.tag}`);
     await msg.reply({embeds: [embed]})
 };
 
