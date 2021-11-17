@@ -10,7 +10,4 @@ let shard = new ShardingManager('./main.js', {
 
 (async () => {
     await shard.spawn({amount: "auto"}).then(()=>console.log('[Shard] SharingManager was successful started'));
-    shard.shards.forEach(shard => {
-        if (shard.id === 0) shard.kill()
-    });
 })();
