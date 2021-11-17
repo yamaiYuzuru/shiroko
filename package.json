@@ -1,6 +1,6 @@
 {
   "name": "shiroko",
-  "version": "1.3.0",
+  "version": "1.3.2",
   "description": "A little anime bot with many functions",
   "main": "main.js",
   "scripts": {
@@ -24,23 +24,28 @@
   },
   "homepage": "https://github.com/yamaiYuzuru/shiroko#readme",
   "dependencies": {
-    "@discordjs/builders": "^0.7.0",
+    "@discordjs/builders": "^0.6.0",
     "@top-gg/sdk": "^3.1.2",
     "@zuzak/owo": "^1.14.1",
-    "booru": "^2.4.1",
+    "booru": "^2.4.2",
     "canvacord": "^5.2.3",
+    "chalk": "^4.1.2",
     "discord.js": "^13.1.0",
+    "discord.js-economy": "^1.0.1",
     "discordutility": "^0.2.6",
     "express": "^4.17.1",
     "fs": "^0.0.1-security",
     "moment": "^2.29.1",
-    "mongoose": "^6.0.2",
+    "mongoose": "^6.0.8",
     "ms": "^2.1.3",
     "nhentai": "^3.0.0",
-    "node-fetch": "^3.0.0",
+    "node-fetch": "^2.6.1",
     "node-superfetch": "^0.2.3",
     "parse-ms": "^3.0.0",
     "random-puppy": "^1.1.0",
-    "snekfetch": "^4.0.4"
+    "snekfetch": "^4.0.4",
+    "topgg-autoposter": "^2.0.0",
+    "winston": "^3.3.3",
+    "winston-daily-rotate-file": "^4.5.5"
   }
 }
