@@ -16,7 +16,6 @@ exports.run = async (client, msg, args) => {
     embed.setTitle('Creditpoints');
     embed.setAuthor(member.user.tag, member.user.avatarURL({dynamic: true}));
     embed.addField('Creditpoints', `${user.creditpoint}<:creditpoint:745337132184240342>`);
-    embed.addField('Daily streak', `${user.dailyStreak || null}`);
     await msg.reply({embeds: [embed]});
 };
 

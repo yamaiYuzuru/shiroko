@@ -1,28 +1,36 @@
-let {Client, Message, MessageEmbed} = require('discord.js');
-let booru = require('booru');
+let { Client, Message, MessageEmbed } = require("discord.js");
+let booru = require("booru");
 
 /**
  * @param {Client} client
  * @param {Message} msg
  */
 exports.run = async (client, msg) => {
-    booru.search('danbooru', ['yaoi','rating:explicit'], {limit:1,random:true}).then(async results => {
-        let posts = results.posts;
-        for (let post of posts) {
-            if (post.sample_url.endsWith('.mp4')) return msg.reply('````Hentai - Yaoi```\n' + post.sample_url);
-            let embed = new MessageEmbed();
-            embed.setTitle(`Hentai - Yaoi`);
-            embed.setImage(post.sample_url);
-            embed.setURL(post.sample_url);
-            embed.setFooter('If the title wasn\'t loaded click on the title');
-            await msg.reply({embeds: [embed]});
-        }
-    }).catch(e => {
-        console.log(e);
-        msg.reply('Something went wrong')
+  booru
+    .search("danbooru", ["yaoi", "rating:explicit"], {
+      limit: 1,
+      random: true,
+    })
+    .then(async (results) => {
+      let posts = results.posts;
+      for (let post of posts) {
+        if (post.sample_url.endsWith(".mp4"))
+          return msg.reply("````Hentai - Yaoi```\n" + post.sample_url);
+        let embed = new MessageEmbed();
+        embed.setTitle(`Hentai - Yaoi`);
+        embed.setImage(post.sample_url);
+        embed.setURL(post.sample_url);
+        embed.setFooter("If the title wasn't loaded click on the title");
+        await msg.reply({ embeds: [embed] });
+      }
+    })
+    .catch((e) => {
+      console.log(e);
+      msg.reply("Something went wrong");
     });
 };
 
 exports.info = {
-    description: "Get some yaoi hentai pics"
+  description: "Get some yaoi hentai pics",
+  cooldown: 5,
 };

@@ -11,7 +11,7 @@ exports.run = async (client, msg, args) => {
     if (!member) return msg.reply('I can\'t find this member');
     if (!msg.member.permissions.has('BAN_MEMBERS')) return msg.reply('You don\'t have enough permissions to use this command');
     if (!member.bannable) return msg.reply('I can\'t ban this member');
-    
+
     let banButton = new MessageButton().setStyle('SUCCESS').setLabel('BAN').setCustomId('cmd_ban_ban');
     let stopButton = new MessageButton().setStyle('SECONDARY').setLabel('Exit').setCustomId('cmd_ban_exit');
     let actionRow = new MessageActionRow({components: [banButton, stopButton]});
