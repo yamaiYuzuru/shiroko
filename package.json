@@ -29,7 +29,7 @@
     "@zuzak/owo": "^1.14.1",
     "booru": "^2.4.2",
     "canvacord": "^5.2.3",
-    "chalk": "^4.1.2",
+    "chalk": "^5.0.0",
     "discord.js": "^13.1.0",
     "discord.js-economy": "^1.0.1",
     "discordutility": "^0.2.6",
