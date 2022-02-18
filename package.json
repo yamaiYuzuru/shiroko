@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/yamaiYuzuru/shiroko#readme",
   "dependencies": {
-    "@discordjs/builders": "^0.9.0",
+    "@discordjs/builders": "^0.12.0",
     "@top-gg/sdk": "^3.1.2",
     "@zuzak/owo": "^1.14.1",
     "booru": "^2.4.2",
